@@ -12,7 +12,7 @@ import warnings
 
 import optimization
 import oracles
-
+import utils
 
 def test_python3():
     ok_(sys.version_info >= (3, 4))
@@ -340,27 +340,27 @@ def test_line_search():
     d = np.array([-1, 0, 0])
 
     # Constant line search
-    ls_tool = optimization.LineSearchTool(method='Constant', c=1.0)
+    ls_tool = utils.LineSearchTool(method='Constant', c=1.0)
     assert_almost_equal(ls_tool.line_search(oracle, x, d, ), 1.0)
-    ls_tool = optimization.LineSearchTool(method='Constant', c=10.0)
+    ls_tool = utils.LineSearchTool(method='Constant', c=10.0)
     assert_almost_equal(ls_tool.line_search(oracle, x, d), 10.0)
 
     # Armijo rule
-    ls_tool = optimization.LineSearchTool(method='Armijo', alpha_0=100, c1=0.9)
+    ls_tool = utils.LineSearchTool(method='Armijo', alpha_0=100, c1=0.9)
     assert_almost_equal(ls_tool.line_search(oracle, x, d), 12.5)
 
-    ls_tool = optimization.LineSearchTool(method='Armijo', alpha_0=100, c1=0.9)
+    ls_tool = utils.LineSearchTool(method='Armijo', alpha_0=100, c1=0.9)
     assert_almost_equal(ls_tool.line_search(oracle, x, d, previous_alpha=1.0), 1.0)
 
-    ls_tool = optimization.LineSearchTool(method='Armijo', alpha_0=100, c1=0.95)
+    ls_tool = utils.LineSearchTool(method='Armijo', alpha_0=100, c1=0.95)
     assert_almost_equal(ls_tool.line_search(oracle, x, d), 6.25)
-    ls_tool = optimization.LineSearchTool(method='Armijo', alpha_0=10, c1=0.9)
+    ls_tool = utils.LineSearchTool(method='Armijo', alpha_0=10, c1=0.9)
     assert_almost_equal(ls_tool.line_search(oracle, x, d), 10.0)
 
     # Wolfe rule
-    ls_tool = optimization.LineSearchTool(method='Wolfe', c1=1e-4, c2=0.9)
+    ls_tool = utils.LineSearchTool(method='Wolfe', c1=1e-4, c2=0.9)
     assert_almost_equal(ls_tool.line_search(oracle, x, d), 16.0)
-    ls_tool = optimization.LineSearchTool(method='Wolfe', c1=1e-4, c2=0.8)
+    ls_tool = utils.LineSearchTool(method='Wolfe', c1=1e-4, c2=0.8)
     assert_almost_equal(ls_tool.line_search(oracle, x, d), 32.0)
 
 

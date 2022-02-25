@@ -8,7 +8,6 @@ import scipy.sparse
 import scipy.optimize
 
 from .utils import get_line_search_tool
-from .directional_scheme import directional_scheme
 
 def conjugate_gradients(matvec, b, x_0, tolerance=1e-4, max_iter=None, trace=False, display=False):
     """

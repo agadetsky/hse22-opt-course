@@ -144,8 +144,7 @@ class LassoProxOracle(BaseCompositeOracle):
         super().__init__(f, h)
 
     def duality_gap(self, x):
-        return lasso_duality_gap(x, self._f.Ax_b(x), self._f.grad(x),
-                                 self._f.b, self._h.regcoef)
+        raise NotImplementedError
 
 
 class LassoNonsmoothOracle(BaseNonsmoothConvexOracle):
